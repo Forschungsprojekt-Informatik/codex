@@ -5,7 +5,7 @@ set -e
 # LibKGE setup from https://github.com/uma-pi1/kge/blob/master/data/download_all.sh
 git clone https://github.com/uma-pi1/kge.git
 cd kge
-git checkout a9ecd249ec2d205df59287f64553a1536add4a43  # freeze but leave the git history
+git checkout 22454312cbd691e89c9779d86ae788178426df24  # freeze but leave the git history
 pip install -e .
 
 cd data/
@@ -18,7 +18,7 @@ else
 	echo fb15k-237 already present
 fi
 if [ ! -f "fb15k-237/dataset.yaml" ]; then
- 	python preprocess.py fb15k-237
+ 	python preprocess/preprocess_default.py fb15k-237
 else
 	echo fb15k-237 already prepared
 fi
@@ -32,5 +32,5 @@ for size in "${sizes[@]}"; do
 done
 
 for size in "${sizes[@]}"; do
-    python preprocess.py codex-${size}
+    python preprocess/preprocess_default.py codex-${size}
 done
